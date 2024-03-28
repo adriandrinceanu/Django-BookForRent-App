@@ -194,3 +194,16 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = 'default-from-drinceanuadrian@gmail.com'
 
 API_KEY = os.getenv('API_KEY')
+
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8000",
+    "http://127.0.0.1:9000",
+    "http://172.19.0.1",
+    "http://0.0.0.0:8000",
+    "https://django-bookforrent-app.onrender.com"
+]
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_DOMAIN = 'django-bookforrent-app.onrender.com'
+SESSION_COOKIE_SECURE = False
