@@ -3,7 +3,7 @@ __pycache__/
 *.pyc
 # collectstatic
 local-db/
-*.env
+.env
 # *.py[cod]
 # *$py.class
 
