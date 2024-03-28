@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install build-essential graphviz graphviz-dev --as
 COPY ./requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 RUN pip install psycopg2-binary
+RUN pip install whitenoise
 
 # Adding code
 WORKDIR /BookForRent
