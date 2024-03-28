@@ -171,3 +171,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'drinceanuadrian@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = 'default-from-drinceanuadrian@gmail.com'
+
+API_KEY = os.getenv('API_KEY')

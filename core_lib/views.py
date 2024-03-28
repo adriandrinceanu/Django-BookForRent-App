@@ -9,6 +9,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from .forms import *
 import requests
+from django.conf import settings
  
 # Create your views here.
 
@@ -73,7 +74,8 @@ def book_detail(request, pk):
             form = RecenzieForm()
 
         # Fetch the YouTube trailer
-        response = requests.get(f'https://www.googleapis.com/youtube/v3/search?part=snippet&q="%{book.title}%20trailer"&key=secret')
+        api_key = settings.API_KEY
+        response = requests.get(f'https://www.googleapis.com/youtube/v3/search?part=snippet&q="%{book.title}%20trailer"&key={api_key}')
         data = response.json()
         youtube_video_id = None
         if data['items']:

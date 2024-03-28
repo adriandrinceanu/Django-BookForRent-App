@@ -16,10 +16,17 @@ services:
       - ./BookForRent/collectstatic:/BookForRent/collectstatic  # Path where Django collects static files
     environment:
       - DJANGO_SETTINGS_MODULE:BookForRent.settings
+      - API_KEY=${MY_API_KEY}
     # links:
     #   - db
     # depends_on:
     #   - db
+  steps:
+    - name: Get secret from Github
+      env:
+        MY_API_KEY: ${{ secrets.API_KEY }}
+      run: |
+       
 
   nginx:
     container_name: nginx-BookForRent
