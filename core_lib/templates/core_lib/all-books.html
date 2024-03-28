@@ -1,0 +1,76 @@
+{% load my_filters %}
+<div class="album py-5 bg-body-tertiary">
+
+<div class="container">
+    <!-- Genre Tabs -->
+    <div class="tabs">
+        {% for genre in genres %}
+            <button class="tablinks btn btn-secondary my-2" onclick="filterBooks(event, '{{ genre }}')">{{ genre }}</button>
+        {% endfor %}
+    </div>
+    <br>
+    <!-- Book Cards -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4" id="bookContainer">
+            {% for book in books %}
+            <div class="col book" data-genres="{% for genre in book.genres.all %}{{ genre.name }} {% endfor %}">
+                <div class="card shadow-sm">
+                    <a href="{% url 'book_detail' pk=book.id %}">
+                        <img src="{{ book.image.url }}" class="bd-placeholder-img card-img-top" width="100%" height="300" role="img" preserveAspectRatio="xMidYMid alt="{{ book.title }}">
+                    </a>
+                <div class="card-body">
+                    <a href="{% url 'book_detail' pk=book.id %}">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                    </a>
+                    <p class="card-text">
+                        Author: {{ book.author }} 
+                        <hr>
+                        Genre:
+                            {% for genre in book.genres.all %}
+                            {{ genre.name }},
+                            {% endfor %}
+                        <hr>
+                        <p> {{ book.rating|starrating }}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'book_detail' pk=book.id %}">View</a>
+                        <a class="btn btn-sm btn-outline-primary" type="button" href="{% url 'addtocart' book.id %}">Rent</a>
+
+                    </div>
+                    <small class="text-body-secondary">{{ book.quantity }} books left</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+         </div>
+        </div>
+    </div>
+
+
+<script>
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    
+    function filterBooks(evt, genreName) {
+        var i, book, books;
+        books = document.getElementsByClassName("book");
+        if (genreName == "All") {
+            for (i = 0; i < books.length; i++) {
+                book = books[i];
+                book.style.display = "";
+            }
+        } else {
+            for (i = 0; i < books.length; i++) {
+                book = books[i];
+                if (book.getAttribute('data-genres').includes(genreName)) {
+                    book.style.display = "";
+                } else {
+                    book.style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+
+

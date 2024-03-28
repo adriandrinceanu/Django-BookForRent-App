@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<div class="container">
+<div class="container row">
+    <div class="col-lg-10">
+        
+        <h3>Rented Books:</h3>
+        <div class="card card-body d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+            <table class="table table-sm ">
+                <tr>
+                    <th>Title</th>
+                    <th>Customers</th>
+                    <th>Due Date</th>
+                </tr>
+                {% for book, customers in books_and_customers.items %}
+                <tr>
+                    <td><b>{{ book }}</b></td>
+                    <td>
+                        <ul>
+                        {% for customer, due_date in customers %}
+                            <li>{{ customer }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                        {% for customer, due_date in customers %}
+                            <li>{{ due_date }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <br>
+
+        <h3>All the books:</h3>
+        {% for carte in books %}
+            <div class=" p-4 gap-3 py-1 w-100 ">
+            <div class="list-group">
+              <li  class="list-group-item list-group-item-action d-flex  gap-3 py-3" >
+                <img src="{{ carte.image.url }}"  width="32" height="32" class="rounded-circle flex-shrink-0">
+                <div class="d-flex gap-1 w-100 justify-content-between gap-3">
+                  <div>
+                    <h6 class="mb-0">{{carte.title}}</h6>
+                  </div>
+                  <a class="opacity-50 text-nowrap" href="{% url 'delete_book' carte.id %}"> Delete </a>
+                </div>
+            </li>
+            </div>
+        </div>
+            
+        {% endfor %}
+
+        
+    </div>
+</div>
+
+{% endblock %}

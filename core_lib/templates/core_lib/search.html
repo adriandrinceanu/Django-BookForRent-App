@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static%}
+{% load my_filters %}
+
+
+{% block content %}
+<div class="form-signin w-100 m-auto" style="padding-top: 5%;">
+    <form method="GET" action="">
+        {% csrf_token %}
+        <div class="form-floating">
+            {{ form.as_p }}
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit" value="Search" >Search</button>
+    </form>
+    
+    
+</div>
+<div class="container">
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4" id="bookContainer">
+    {% for book in books %}
+    <div class="col book" data-genres="{% for genre in book.genres.all %}{{ genre.name }} {% endfor %}">
+        <div class="card shadow-sm">
+            <a href="{% url 'book_detail' pk=book.id %}">
+                <img src="{{ book.image.url }}" class="bd-placeholder-img card-img-top" width="100%" height="300" role="img" preserveAspectRatio="xMidYMid alt="{{ book.title }}">
+            </a>
+        <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">
+                Author: {{ book.author }} 
+                <hr>
+                Genre:
+                    {% for genre in book.genres.all %}
+                    {{ genre.name }},
+                    {% endfor %}
+                <hr>
+                <p> {{ book.rating|starrating }}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'book_detail' pk=book.id %}">View</a>
+                <a class="btn btn-sm btn-outline-primary" type="button" href="{% url 'addtocart' book.id %}">Rent</a>
+
+            </div>
+            <small class="text-body-secondary">{{ book.quantity }} books left</small>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+ </div>
+</div>
+{% endblock %}

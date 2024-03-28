@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .form-check-input {
+        position: relative;
+        margin-top: 0 !important;
+        margin-left: 2rem !important;
+        display: contents !important;
+}
+.form-signin {
+    max-width: 500px;
+    padding: 1rem;
+}
+</style>
+<br>
+<div class="form-signin  m-auto">
+    <div class="container ">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var rentedField = document.querySelector('input[name=rented]');
+        var rentedBooksField = document.querySelector('input[name=rented_books]');
+        var likedBooksField = document.querySelector('input[name=liked_books]');
+        var rentedBooksLabel = document.querySelector('label[for=id_rented_books]');
+        var likedBooksLabel = document.querySelector('label[for=id_liked_books]');
+
+        rentedBooksLabel.style.display = 'none';
+        likedBooksLabel.style.display = 'none';
+
+        rentedField.addEventListener('change', function() {
+            if (this.value == 'yes') {
+                rentedBooksField.style.display = 'block';
+                likedBooksField.style.display = 'block';
+                rentedBooksLabel.style.display = 'block';
+                likedBooksLabel.style.display = 'block';
+            } else {
+                rentedBooksField.style.display = 'none';
+                likedBooksField.style.display = 'none';
+                rentedBooksLabel.style.display = 'none';
+                likedBooksLabel.style.display = 'none';
+            }
+        });
+    });
+    </script>
+</div>
+</div>
+{% endblock %}

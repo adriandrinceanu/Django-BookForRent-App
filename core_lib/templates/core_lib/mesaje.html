@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<div class="container jumbotron">
+    <div class=" p-4 gap-3 py-1 w-100 ">
+        <div class="list-group">
+    {% for mesaj in all_messages %}
+        Nume: {{mesaj.nume}}<br>
+        email: {{mesaj.email}}<br>
+        A mai inchiriat de la noi: {{mesaj.rented}}<br>
+        Ce carti a inchiriat: {{mesaj.rented_books}}<br>
+        I-a placut cartea?: {{mesaj.liked_books}}<br>
+        Subiect: {{mesaj.subiect}}<br>
+        Mesaj: {{mesaj.mesaj}}<br>
+        <a href="{% url 'delete_mesaj' mesaj.pk %}"> Delete </a>
+        <hr>
+        
+    {% endfor %}
+</div>
+</div></div>
+{% endblock %}

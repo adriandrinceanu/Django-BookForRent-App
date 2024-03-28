@@ -1,0 +1,37 @@
+services:
+  # db:
+  #   image: postgres:16
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./local-db:/var/lib/postgresql/data
+  web:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/BookForRent/
+      - ./BookForRent/collectstatic:/BookForRent/collectstatic  # Path where Django collects static files
+    environment:
+      - DJANGO_SETTINGS_MODULE:BookForRent.settings
+    # links:
+    #   - db
+    # depends_on:
+    #   - db
+
+  nginx:
+    container_name: nginx-BookForRent
+    restart: always
+    image: nginx:latest
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./BookForRent/collectstatic:/BookForRent/collectstatic
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+volumes:
+  static_volume:

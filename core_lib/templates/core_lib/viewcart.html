@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10">
+            <br>
+            <h5>My rented books:</h5>
+            <div class="card card-body">            
+                <table class="table table-sm">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Rented At</th>
+                        <th>Countdown</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for book in cart.books.all %}
+                    <tr>
+                        <td>{{book.title}} </td>
+                        <td>{{book.author}} </td>
+                        <td>{% for genre in book.genres.all %}
+                            {{ genre.name }}
+                            {% endfor %} </td>
+                        <td>{{ book.rented_at }}</td>
+                        <td id="countdown{{ book.id }}"></td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'return_book' book.id %}">Return book</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% for book in cart.books.all %}
+<script>
+    // Set the due date
+    var due_date{{ book.id }} = new Date("{{ book.due_date.isoformat }}");
+
+    // Update the countdown every 1 second
+    var countdown{{ book.id }} = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = due_date{{ book.id }} - now;
+
+        var hours = Math.floor(distance / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown{{ book.id }}").innerHTML = hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+            clearInterval(countdown{{ book.id }});
+            document.getElementById("countdown{{ book.id }}").innerHTML = "Please don't forget to return the book!!";
+        }
+    }, 1000);
+</script>
+{% endfor %}
+{% endblock %}

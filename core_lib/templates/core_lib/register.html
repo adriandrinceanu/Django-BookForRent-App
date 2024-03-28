@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+
+<main class="form-signin  m-auto" style="padding-top: 2%;">
+    <form method="POST" action="" >
+        
+        {% csrf_token %}
+        {{ form.errors }}
+        {% for field in form %}
+            {{field.errors}}
+            <div class="form-floating">
+                {{field}}
+                
+            <label for="floatingInput">{{ field.label }}</label>
+            </div>
+        {% endfor %}
+        {{ cust_form.errors }}
+        {% for field in cust_form %}
+            {{ field.errors }}
+            <div class="form-floating">
+                {{field}}
+            <label for="floatingInput">{{ field.label }}</label>
+            </div>
+        {% endfor %}
+        
+       
+        <input class="btn btn-primary" type="submit" value="Register Account">
+    </form>
+</main>
+
+
+{% endblock %}
+
+
+<!--  -->
