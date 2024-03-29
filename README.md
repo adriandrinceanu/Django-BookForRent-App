@@ -31,3 +31,15 @@ git clone https://github.com/adriandrinceanu/Django-BookForRent-App.git
 cd Django-BookforRent-App
 docker compose up
 ```
+## Screenshots 🚀
+
+![Homespage](book_images\bookforrent-homepage.jpg)
+
+![Book Page](book_images\bookforrent-bookpage.jpg)
+
+![My rentals](book_images\bookforrent-rentals.jpg)
+
+![Admin](book_images\bookforrent-admin.jpg)
+
+![Model](model.png)
+
