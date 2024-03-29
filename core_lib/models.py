@@ -19,7 +19,7 @@ class Book(models.Model):
     title=models.CharField(max_length=200,null=True)
     author=models.CharField(max_length=200,null=True)
     genres = models.ManyToManyField(Genre)
-    image = models.ImageField(upload_to='book_images/')
+    image = models.ImageField(upload_to='')
     quantity = models.IntegerField(default=0)
     rented_at = models.DateTimeField(auto_now_add=True, null=True)
     due_date = models.DateTimeField(default=get_default_due_date)
