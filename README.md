@@ -1,5 +1,7 @@
 # BookForRent App 📚
 
+##Live version - soon
+
 Welcome to my Bookstore Management System! This application is designed to streamline the process of managing a bookstore, with a special focus on the rental system. 
 
 ## Features 🌟
