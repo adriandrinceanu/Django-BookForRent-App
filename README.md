@@ -20,7 +20,14 @@ Welcome to my Bookstore Management System! This application is designed to strea
 - **Stock System**: Keep track of your inventory with our integrated stock system.
 - **User Registration**: New users can easily register to use the system.
 - **Book Management**: As an admin, you can add or delete books from the frontend.
+- **API**: I've integrated REST FRAMEWORK
 
 ## Getting Started 🚀
 
-To get started with our Bookstore Management System, follow the installation instructions below...
+To get started with our Bookstore Management System, follow the installation instructions below:
+
+```
+git clone https://github.com/adriandrinceanu/Django-BookForRent-App.git
+cd Django-BookforRent-App
+docker compose up
+```
