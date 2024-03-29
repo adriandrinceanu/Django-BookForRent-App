@@ -172,7 +172,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/book_images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'book_images/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'book_images')
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
