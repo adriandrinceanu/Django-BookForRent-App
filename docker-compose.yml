@@ -13,7 +13,6 @@ services:
       - 8000:8000
     volumes:
       - .:/BookForRent/
-      - ./BookForRent/book_images:/book_images
       - ./BookForRent/collectstatic:/BookForRent/collectstatic  # Path where Django collects static files
     environment:
       - DJANGO_SETTINGS_MODULE:BookForRent.settings
@@ -28,7 +27,6 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./BookForRent/book_images:/book_images
       - ./BookForRent/collectstatic:/BookForRent/collectstatic
     ports:
       - 80:80
