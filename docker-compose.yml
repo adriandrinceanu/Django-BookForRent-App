@@ -28,6 +28,7 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./BookForRent/collectstatic:/BookForRent/collectstatic
+      - ./BookForRent/book_images:/BookForRent/book_images
     ports:
       - 80:80
     depends_on:
