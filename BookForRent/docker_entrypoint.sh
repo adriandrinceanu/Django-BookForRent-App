@@ -8,4 +8,4 @@ python manage.py collectstatic --no-input
 # python manage.py loaddata db.json
 # python manage.py runserver 0.0.0.0:8000
 
-gunicorn --config gunicorn-cfg.py core_lib.wsgi -b 0.0.0.0:8000
+gunicorn --config gunicorn-cfg.py BookForRent.wsgi -b 0.0.0.0:8000
